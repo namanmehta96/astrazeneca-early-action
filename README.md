@@ -3,7 +3,7 @@
 A React + Vite presentation site for the EDHEC Global MBA Industry Acceleration Project
 on AstraZeneca and AI for lung cancer.
 
-**Live:** https://namanmehta96.github.io/astrazeneca-early-action/
+**Live:** https://Anna-Ritoper.github.io/astrazeneca-early-action/
 
 ## Stack
 
