@@ -19,7 +19,7 @@ export default function CompetitorMap() {
   const xOf = (p) => padL + (p / 100) * (W - padL - padR)
   const yOf = (p) => padT + (1 - p / 100) * (H - padT - padB)
 
-  // Empty quadrant — top-right
+  // Empty quadrant, top-right
   const eLeft = xOf(56)
   const eRight = xOf(98)
   const eTop = yOf(95)
@@ -76,7 +76,7 @@ export default function CompetitorMap() {
             LUNG CLINICAL DEPTH →
           </text>
 
-          {/* Empty quadrant — glowing dashed border */}
+          {/* Empty quadrant, glowing dashed border */}
           <motion.rect
             x={eLeft}
             y={eTop}

@@ -47,7 +47,7 @@ function Card({ eyebrow, title, subtitle, children, source }) {
 }
 
 /* =========================================================
-   CARD 2.1 — AT A GLANCE
+   CARD 2.1: AT A GLANCE
    ========================================================= */
 
 const glanceStats = [
@@ -61,7 +61,7 @@ const drugTickers = [
   { name: 'TAGRISSO', rev: '$7.25B',        color: 'text-az-magenta' },
   { name: 'IMFINZI',  rev: '$6.06B',        color: 'text-az-navy' },
   { name: 'ENHERTU',  rev: '$2.78B (+40%)', color: 'text-az-gold-deep' },
-  { name: 'CALQUENCE', rev: '—',             color: 'text-az-muted' },
+  { name: 'CALQUENCE', rev: '-',             color: 'text-az-muted' },
   { name: 'TRUQAP',    rev: 'NICE pending',  color: 'text-az-muted' },
 ]
 
@@ -69,7 +69,7 @@ function Card1Glance() {
   return (
     <Card
       eyebrow="FINANCIAL OVERVIEW"
-      title="AstraZeneca at a glance — 2025"
+      title="AstraZeneca at a glance: 2025"
       source="AZ FY2025 results. Fortune Global 500. Statista UK oncology market 2020–2029."
     >
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
@@ -133,7 +133,7 @@ function StatBlock({ value, prefix = '', suffix = '', decimals = 0, label, sub, 
 }
 
 /* =========================================================
-   CARD 2.2 — TOP 5 PHARMA REVENUE 2020-2025 (line chart)
+   CARD 2.2: TOP 5 PHARMA REVENUE 2020-2025 (line chart)
    ========================================================= */
 
 const pharmaSeries = [
@@ -228,7 +228,7 @@ function Card2PharmaRevenue() {
 }
 
 /* =========================================================
-   CARD 2.3 — UK ONCOLOGY MARKET 2020-2029 (bar chart)
+   CARD 2.3: UK ONCOLOGY MARKET 2020-2029 (bar chart)
    ========================================================= */
 
 const ukMarket = [
@@ -320,7 +320,7 @@ function Card3UKMarket() {
 }
 
 /* =========================================================
-   CARD 2.4 — SIX STRATEGIC PILLARS
+   CARD 2.4: SIX STRATEGIC PILLARS
    ========================================================= */
 
 const pillars = [
@@ -368,7 +368,7 @@ function Card4Pillars() {
 }
 
 /* =========================================================
-   CARD 2.5 — MARKET DYNAMICS (six forces)
+   CARD 2.5: MARKET DYNAMICS (six forces)
    ========================================================= */
 
 const forces = [
@@ -408,7 +408,7 @@ function Card5Forces() {
 }
 
 /* =========================================================
-   CARD 2.6 — AI STRATEGY (4 capability cards)
+   CARD 2.6: AI STRATEGY (4 capability cards)
    ========================================================= */
 
 const aiCapabilities = [
@@ -461,7 +461,7 @@ function Card6AIStrategy() {
 }
 
 /* =========================================================
-   CARD 2.7 — PARTNERSHIP ECOSYSTEM (hub & spokes)
+   CARD 2.7: PARTNERSHIP ECOSYSTEM (hub & spokes)
    ========================================================= */
 
 const ecosystem = [
@@ -540,7 +540,7 @@ function Card7Ecosystem() {
 }
 
 /* =========================================================
-   CARD 2.8 — PORTER'S FIVE FORCES
+   CARD 2.8: PORTER'S FIVE FORCES
    ========================================================= */
 
 const porter = {
@@ -603,7 +603,7 @@ function ForceBox({ force, hero = false, delay = 0 }) {
 }
 
 /* =========================================================
-   CARD 2.9 — COMPETITIVE POSITIONING TABLE
+   CARD 2.9: COMPETITIVE POSITIONING TABLE
    ========================================================= */
 
 const positioning = [
@@ -675,7 +675,7 @@ function Card9Positioning() {
 }
 
 /* =========================================================
-   CARD 2.10 — STRATEGIC IMPERATIVES
+   CARD 2.10: STRATEGIC IMPERATIVES
    ========================================================= */
 
 const imperatives = [
@@ -690,7 +690,7 @@ function Card10Imperatives() {
     <Card
       eyebrow="STRATEGIC OUTLOOK"
       title="Four strategic imperatives"
-      subtitle="Handoff to Ch 03 — Strategy."
+      subtitle="Handoff to Ch 03: Strategy."
       source="AZ investor day 2024. Competitive analysis."
     >
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

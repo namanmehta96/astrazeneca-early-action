@@ -92,7 +92,7 @@ export default function VideoIntro({ onFinish }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
 
-            {/* Skip — small, subtle, bottom-right */}
+            {/* Skip: small, subtle, bottom-right */}
             <button
               type="button"
               onClick={finish}

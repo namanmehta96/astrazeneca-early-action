@@ -13,6 +13,7 @@ const ORDER = [
   { id: 'strategy',   path: '/strategy' },
   { id: 'solution',   path: '/solution' },
   { id: 'financials', path: '/financials' },
+  { id: 'qa',         path: '/qa' },
   { id: 'references', path: '/references' },
 ]
 
@@ -32,7 +33,7 @@ export default function PaginatedChapter({ chapterId, pages }) {
   const prevChapter = chapterIdx > 0 ? ORDER[chapterIdx - 1] : null
   const nextChapter = chapterIdx >= 0 && chapterIdx < ORDER.length - 1 ? ORDER[chapterIdx + 1] : null
 
-  // Reset to first page whenever the location changes — covers sidebar clicks
+  // Reset to first page whenever the location changes. Covers sidebar clicks
   // landing on the same chapter (pathname identical, location.key differs).
   useEffect(() => {
     setPageIndex(0)

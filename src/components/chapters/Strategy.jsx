@@ -793,40 +793,49 @@ function Card4bESMO() {
    ========================================================= */
 
 const canvasFactors = [
-  { label: 'Drug Portfolio', short: 'Drugs' },
-  { label: 'Diagnostics Ownership', short: 'Dx' },
-  { label: 'Point AI', short: 'AI' },
-  { label: 'Data Infra', short: 'Data' },
-  { label: 'Screening Reach', short: 'Screen' },
-  { label: 'Pathway Coordination', short: 'Coord' },
-  { label: 'Trial Activation', short: 'Trial' },
+  { label: 'Drug Portfolio Strength' },
+  { label: 'Diagnostics Ownership' },
+  { label: 'Point AI Capabilities' },
+  { label: 'Data Infrastructure' },
+  { label: 'Screening Ecosystem Reach' },
+  { label: 'Patient Pathway Coordination' },
+  { label: 'Trial-to-Treatment Activation' },
 ]
 
 const canvasData = {
-  azToday:  [4, 2, 3, 4, 4, 2, 3],
-  roche:    [4, 5, 4, 5, 3, 3, 3],
-  msd:      [5, 1, 3, 3, 2, 2, 4],
-  novartis: [4, 3, 3, 4, 2, 2, 3],
+  azToday:  [4, 2, 3, 4, 4, null, null],
+  roche:    [4, 5, 4, 5, 3, null, null],
+  msd:      [5, 1, 3, 3, 2, null, null],
+  novartis: [4, 3, 3, 4, 2, null, null],
   azNew:    [4, 3, 3, 4, 5, 5, 5],
 }
 
 function Card5Canvas() {
-  const W = 800, H = 420, padL = 70, padR = 40, padT = 50, padB = 70
+  const W = 800, H = 420, padL = 70, padR = 40, padT = 50, padB = 90
   const chartW = W - padL - padR
   const chartH = H - padT - padB
   const stepX = chartW / (canvasFactors.length - 1)
   const xOf = (i) => padL + i * stepX
-  const yOf = (v) => padT + ((5 - v) / 4) * chartH
+  const yOf = (v) => padT + ((6 - v) / 6) * chartH
 
-  const toPath = (data) =>
-    data.map((v, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i)},${yOf(v)}`).join(' ')
+  const toPath = (data) => {
+    const pts = data.map((v, i) => (v === null ? null : { x: xOf(i), y: yOf(v) }))
+    let d = ''
+    let open = false
+    pts.forEach((p) => {
+      if (p === null) { open = false; return }
+      d += (open ? ' L ' : ' M ') + `${p.x},${p.y}`
+      open = true
+    })
+    return d.trim()
+  }
 
   const lines = [
-    { key: 'azToday',  color: '#9CA3AF', width: 2, dash: '6 4', label: 'AZ Today' },
-    { key: 'roche',    color: '#6B7280', width: 1.5, dash: '3 3', label: 'Roche' },
-    { key: 'msd',      color: '#9B8AAE', width: 1.5, dash: '3 3', label: 'MSD' },
-    { key: 'novartis', color: '#C9851D', width: 1.5, dash: '3 3', label: 'Novartis' },
-    { key: 'azNew',    color: '#830051', width: 3.5, dash: '', label: 'AZ New Strategy' },
+    { key: 'azToday',  color: '#1C2B5E', width: 2.5, dash: '', label: 'AstraZeneca (Today)' },
+    { key: 'roche',    color: '#E07B3A', width: 2.5, dash: '', label: 'Roche' },
+    { key: 'msd',      color: '#2E7D4F', width: 2.5, dash: '', label: 'MSD' },
+    { key: 'novartis', color: '#4AB3E3', width: 2.5, dash: '', label: 'Novartis' },
+    { key: 'azNew',    color: '#830051', width: 4,   dash: '', label: 'AZ New Strategy' },
   ]
 
   return (
@@ -834,10 +843,10 @@ function Card5Canvas() {
       eyebrow="BLUE OCEAN"
       title="Strategy Canvas"
       prompts={[
-        'Red Ocean: drugs, diagnostics, point AI are crowded',
-        'Blue Ocean: coordination layer is empty',
-        'AZ new curve rises sharply on right side',
-        'Nobody else is playing there',
+        'Red Ocean factors: drugs, diagnostics, point AI are contested',
+        'Blue Ocean: coordination layer is uncontested',
+        'Competitors drop off the chart at factor 5',
+        'AZ New Strategy holds level 5 where nobody else plays',
       ]}
       source="Blue Ocean Strategy (Kim & Mauborgne). Competitive analysis. EDHEC team."
     >
@@ -845,7 +854,7 @@ function Card5Canvas() {
         <div className="rounded-2xl border border-az-border bg-white p-4 shadow-card md:p-6">
           <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full">
             {/* Y-axis labels */}
-            {[1, 2, 3, 4, 5].map((v) => (
+            {[0, 1, 2, 3, 4, 5, 6].map((v) => (
               <g key={v}>
                 <line
                   x1={padL} y1={yOf(v)} x2={W - padR} y2={yOf(v)}
@@ -861,16 +870,21 @@ function Card5Canvas() {
             ))}
 
             {/* X-axis labels */}
-            {canvasFactors.map((f, i) => (
-              <text
-                key={f.label}
-                x={xOf(i)} y={H - padB + 22}
-                textAnchor="middle" fontFamily="Montserrat" fontSize="10" fontWeight="700" fill="#1C2B5E"
-                style={{ letterSpacing: '0.5px' }}
-              >
-                {f.short}
-              </text>
-            ))}
+            {canvasFactors.map((f, i) => {
+              const words = f.label.split(' ')
+              return (
+                <text
+                  key={f.label}
+                  x={xOf(i)} y={H - padB + 18}
+                  textAnchor="middle" fontFamily="Montserrat" fontSize="9" fontWeight="700" fill="#1C2B5E"
+                  style={{ letterSpacing: '0.3px' }}
+                >
+                  {words.map((word, wi) => (
+                    <tspan key={wi} x={xOf(i)} dy={wi === 0 ? 0 : 11}>{word}</tspan>
+                  ))}
+                </text>
+              )
+            })}
 
             {/* Lines */}
             {lines.map((l, li) => (
@@ -889,17 +903,21 @@ function Card5Canvas() {
               />
             ))}
 
-            {/* Dots for AZ New */}
-            {canvasData.azNew.map((v, i) => (
-              <motion.circle
-                key={i}
-                cx={xOf(i)} cy={yOf(v)} r="6"
-                fill="#830051"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.2 + i * 0.08, duration: 0.4, type: 'spring', damping: 12 }}
-              />
-            ))}
+            {/* Dots for all lines, skipping nulls */}
+            {lines.map((l) =>
+              canvasData[l.key].map((v, i) =>
+                v === null ? null : (
+                  <motion.circle
+                    key={`${l.key}-${i}`}
+                    cx={xOf(i)} cy={yOf(v)} r={l.key === 'azNew' ? 6 : 4}
+                    fill={l.color}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.8 + i * 0.08, duration: 0.4, type: 'spring', damping: 12 }}
+                  />
+                )
+              )
+            )}
 
             {/* Y-axis title */}
             <text
@@ -908,7 +926,7 @@ function Card5Canvas() {
               transform={`rotate(-90, 18, ${H / 2})`}
               style={{ letterSpacing: '1.5px' }}
             >
-              LEVEL
+              LEVEL OF OFFERING
             </text>
           </svg>
         </div>
@@ -940,25 +958,25 @@ function Card5Canvas() {
    ========================================================= */
 
 const scoringFactors = [
-  { factor: 'Drug Portfolio Strength',   azToday: 4, roche: 4, msd: 5, novartis: 4, azNew: 4 },
-  { factor: 'Diagnostics Ownership',     azToday: 2, roche: 5, msd: 1, novartis: 3, azNew: 3 },
-  { factor: 'Point AI Capabilities',     azToday: 3, roche: 4, msd: 3, novartis: 3, azNew: 3 },
-  { factor: 'Data Infrastructure',       azToday: 4, roche: 5, msd: 3, novartis: 4, azNew: 4 },
-  { factor: 'Screening Ecosystem Reach', azToday: 4, roche: 3, msd: 2, novartis: 2, azNew: 5 },
-  { factor: 'Patient Pathway Coordination', azToday: 2, roche: 3, msd: 2, novartis: 2, azNew: 5 },
-  { factor: 'Trial-to-Treatment Activation', azToday: 3, roche: 3, msd: 4, novartis: 3, azNew: 5 },
+  { factor: 'Drug Portfolio Strength',        azToday: 4,    roche: 4,    msd: 5,    novartis: 4,    azNew: 4 },
+  { factor: 'Diagnostics Ownership',          azToday: 2,    roche: 5,    msd: 1,    novartis: 3,    azNew: 3 },
+  { factor: 'Point AI Capabilities',          azToday: 3,    roche: 4,    msd: 3,    novartis: 3,    azNew: 3 },
+  { factor: 'Data Infrastructure',            azToday: 4,    roche: 5,    msd: 3,    novartis: 4,    azNew: 4 },
+  { factor: 'Screening Ecosystem Reach',      azToday: 4,    roche: 3,    msd: 2,    novartis: 2,    azNew: 5 },
+  { factor: 'Patient Pathway Coordination',   azToday: null, roche: null, msd: null, novartis: null, azNew: 5 },
+  { factor: 'Trial-to-Treatment Activation',  azToday: null, roche: null, msd: null, novartis: null, azNew: 5 },
 ]
 
 const scoreDots = (n, highlight = false) => {
+  if (n === null) {
+    return <span className="font-mono text-[10px] uppercase tracking-wide text-az-muted">no position</span>
+  }
   const filled = highlight ? 'bg-az-magenta' : 'bg-az-navy'
   const empty = 'bg-az-light'
   return (
     <div className="flex gap-1">
       {[1, 2, 3, 4, 5].map((i) => (
-        <span
-          key={i}
-          className={`h-2 w-2 rounded-full ${i <= n ? filled : empty}`}
-        />
+        <span key={i} className={`h-2 w-2 rounded-full ${i <= n ? filled : empty}`} />
       ))}
     </div>
   )
@@ -1034,7 +1052,7 @@ function Card5bScoring() {
         transition={{ delay: 0.9, duration: 0.6 }}
         className="mt-4 text-center font-display text-lg italic text-az-navy md:text-xl"
       >
-        The bottom three rows are <span className="text-az-magenta font-bold">blue ocean</span> — empty space where AZ can lead.
+        The bottom three rows are <span className="text-az-magenta font-bold">blue ocean</span>: empty space where AZ can lead.
       </motion.p>
     </Card>
   )

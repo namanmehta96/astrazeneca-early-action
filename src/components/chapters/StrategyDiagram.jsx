@@ -58,7 +58,7 @@ export default function StrategyDiagram() {
       </header>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6">
-        {/* LEFT — For the Physician */}
+        {/* LEFT: For the Physician */}
         <div>
           <div className="mb-4 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-az-magenta/10 text-az-magenta">
@@ -103,10 +103,10 @@ export default function StrategyDiagram() {
           </ol>
         </div>
 
-        {/* CENTER — flowing arrows */}
+        {/* CENTER: flowing arrows */}
         <CenterArrows />
 
-        {/* RIGHT — Behind the Screen */}
+        {/* RIGHT: Behind the Screen */}
         <div>
           <div className="mb-4 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-az-sky/10 text-az-sky">
@@ -160,7 +160,7 @@ export default function StrategyDiagram() {
         </div>
       </div>
 
-      {/* BOTTOM — dark navy loop ticker */}
+      {/* BOTTOM: dark navy loop ticker */}
       <div className="mt-10 overflow-hidden rounded-xl bg-az-navy px-6 py-4">
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-sm uppercase tracking-[0.18em] text-az-gold">
           {loopTokens.map((tok, i) => (
@@ -200,7 +200,7 @@ function CenterArrows() {
           </marker>
         </defs>
 
-        {/* Top arc — Expert opinions */}
+        {/* Top arc: Expert opinions */}
         <motion.path
           d="M 28 130 Q 150 18 272 130"
           stroke="#F5A623"
@@ -218,7 +218,7 @@ function CenterArrows() {
           EXPERT OPINIONS
         </text>
 
-        {/* Middle — Data sharing */}
+        {/* Middle: Data sharing */}
         <motion.line
           x1="32"
           y1="130"
@@ -238,7 +238,7 @@ function CenterArrows() {
           DATA SHARING
         </text>
 
-        {/* Bottom arc — Decision support */}
+        {/* Bottom arc: Decision support */}
         <motion.path
           d="M 28 130 Q 150 242 272 130"
           stroke="#F5A623"

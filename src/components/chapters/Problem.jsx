@@ -3,7 +3,7 @@ import PaginatedChapter from '../shared/PaginatedChapter'
 import SymbolWatermark from '../shared/SymbolWatermark'
 import StatCounter from '../shared/StatCounter'
 
-/* ---------------- Slide 1.1 — THE PROBLEM ---------------- */
+/* ---------------- Slide 1.1: THE PROBLEM ---------------- */
 
 const headlineStats = [
   { value: 84, suffix: '%', label: 'of patients diagnosed too late', delay: 0.25, accent: 'red' },
@@ -93,7 +93,7 @@ function ProblemOpenerPage() {
   )
 }
 
-/* ---------------- Slide 1.2 — THE GAP ---------------- */
+/* ---------------- Slide 1.2: THE GAP ---------------- */
 
 const gapSections = [
   {
@@ -223,7 +223,7 @@ function ProblemGapPage() {
   )
 }
 
-/* ---------------- Slide 1.3 — BARRIERS ---------------- */
+/* ---------------- Slide 1.3: BARRIERS ---------------- */
 
 const barriers = [
   {
@@ -316,7 +316,7 @@ function ProblemBarriersPage() {
   )
 }
 
-/* ---------------- Slide 1.4 — THE PRIZE ---------------- */
+/* ---------------- Slide 1.4: THE PRIZE ---------------- */
 
 const shifts = [
   {
