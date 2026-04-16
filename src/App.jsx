@@ -11,6 +11,7 @@ import Market from './components/chapters/Market'
 import Strategy from './components/chapters/Strategy'
 import Solution from './components/chapters/Solution'
 import Financials from './components/chapters/Financials'
+import QA from './components/chapters/QA'
 import References from './components/chapters/References'
 
 function Page({ children }) {
@@ -38,6 +39,7 @@ function AnimatedRoutes() {
         <Route path="/strategy"    element={<Page><Strategy /></Page>} />
         <Route path="/solution"    element={<Page><Solution /></Page>} />
         <Route path="/financials"  element={<Page><Financials /></Page>} />
+        <Route path="/qa"          element={<Page><QA /></Page>} />
         <Route path="/references"  element={<Page><References /></Page>} />
         <Route path="*"            element={<Page><Problem /></Page>} />
       </Routes>

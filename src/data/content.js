@@ -16,7 +16,8 @@ export const chapters = [
   { id: 'strategy',   path: '/strategy',    label: 'Strategy',          number: '03', nav: true,  icon: 'grid' },
   { id: 'solution',   path: '/solution',    label: 'Solution',          number: '04', nav: true,  icon: 'layers' },
   { id: 'financials', path: '/financials',  label: 'Value & Scale', number: '05', nav: true,  icon: 'chart' },
-  { id: 'references', path: '/references',  label: 'References',        number: '06', nav: true,  icon: 'shield' },
+  { id: 'qa',         path: '/qa',          label: 'Q&A',               number: '06', nav: true,  icon: 'shield' },
+  { id: 'references', path: '/references',  label: 'References',        number: '07', nav: true,  icon: 'shield' },
 ]
 
 export const hero = {

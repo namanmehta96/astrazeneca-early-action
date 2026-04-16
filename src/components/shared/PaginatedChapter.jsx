@@ -13,6 +13,7 @@ const ORDER = [
   { id: 'strategy',   path: '/strategy' },
   { id: 'solution',   path: '/solution' },
   { id: 'financials', path: '/financials' },
+  { id: 'qa',         path: '/qa' },
   { id: 'references', path: '/references' },
 ]
 
