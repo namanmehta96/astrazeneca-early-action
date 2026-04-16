@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --az-white: #ffffff;
+  --az-light: #f4f6f9;
+  --az-navy: #1c2b5e;
+  --az-navy-deep: #121d45;
+  --az-navy-soft: #2a3a70;
+  /* Brand primary: real AstraZeneca magenta (replaces prior red) */
+  --az-red: #830051;
+  --az-magenta: #830051;
+  --az-purple: #3c1053;
+  --az-sky: #00a3e0;
+  --az-gold: #f5a623;
+  --az-gold-deep: #c9851d;
+  --az-amber: #e8a93a;
+  --az-charcoal: #2d2d2d;
+  --az-ink: #1c1c1c;
+  --az-muted: #6b7280;
+  --az-border: #e5e8ee;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  color: var(--az-charcoal);
+  background: var(--az-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-display {
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.font-mono {
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Site-wide scrollbar hide ---- */
+html,
+body,
+.az-scroll,
+.az-scroll * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.az-scroll::-webkit-scrollbar,
+.az-scroll *::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: rgba(131, 0, 81, 0.18);
+  color: var(--az-navy);
+}
+::-moz-selection {
+  background: rgba(131, 0, 81, 0.18);
+  color: var(--az-navy);
+}
+
+/* ---- Grain texture overlay (site-wide) ---- */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* ---- Cursor: hide native when custom active ---- */
+html.custom-cursor-active,
+html.custom-cursor-active *,
+html.custom-cursor-active *::before,
+html.custom-cursor-active *::after {
+  cursor: none !important;
+}
+
+/* ---- Diamond watermark backgrounds ---- */
+.diamond-watermark {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><g fill='none' stroke='%231C2B5E' stroke-width='0.4' opacity='0.06'><path d='M60,10 L110,60 L60,110 L10,60 Z'/><path d='M60,30 L90,60 L60,90 L30,60 Z'/><path d='M60,50 L70,60 L60,70 L50,60 Z'/></g></svg>");
+  background-size: 240px 240px;
+}
+
+.diamond-watermark-navy {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><g fill='none' stroke='%23FFFFFF' stroke-width='0.4' opacity='0.04'><path d='M60,10 L110,60 L60,110 L10,60 Z'/><path d='M60,30 L90,60 L60,90 L30,60 Z'/></g></svg>");
+  background-size: 240px 240px;
+}
+
+/* ---- Logo white (CSS filter for dark backgrounds) ---- */
+.logo-white {
+  filter: brightness(0) invert(1);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Range slider ---- */
+input[type='range'].az-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--az-gold) 0%,
+    var(--az-gold) var(--val, 0%),
+    rgba(255, 255, 255, 0.12) var(--val, 0%),
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  border-radius: 999px;
+  outline: none;
+}
+input[type='range'].az-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--az-white);
+  border: 3px solid var(--az-gold);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(245, 166, 35, 0.45);
+  transition: transform 0.15s ease;
+}
+input[type='range'].az-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+input[type='range'].az-slider::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--az-white);
+  border: 3px solid var(--az-gold);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(245, 166, 35, 0.45);
+}
+
+/* ---- Chapter surface ---- */
+.chapter-surface {
+  background: var(--az-light);
+}
+
+/* ---- Rotating conic glow (card hover border) ---- */
+@keyframes az-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.az-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--az-magenta) 90deg,
+    transparent 180deg,
+    var(--az-gold) 270deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: az-spin 4s linear infinite;
+  pointer-events: none;
+}
+.az-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Disable native caret on text inputs kept visible; keep cursor hidden only on decorative */
+input,
+textarea {
+  cursor: text;
+}
+html.custom-cursor-active input,
+html.custom-cursor-active textarea {
+  cursor: none !important;
+}
